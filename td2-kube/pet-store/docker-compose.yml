@@ -1,0 +1,22 @@
+version: "3.6"
+services:
+  web:
+    build: web
+    image: pet-store-web
+    networks:
+      - backend
+    ports:
+      - 3000
+  db:
+    build: database
+    image: pet-store-db
+    networks:
+      - backend
+    volumes:
+      - pets-data:/var/lib/postgresql/data
+
+networks:
+  backend:
+
+volumes:
+  pets-data:
