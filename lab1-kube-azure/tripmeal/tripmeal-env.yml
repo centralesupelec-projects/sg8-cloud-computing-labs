@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: tripmeal-env
+data:
+    DATABASE_NAME: tripmealdb
+    DATABASE_HOST: db
+    DATABASE_PORT: "3306"
+    SERVER_PORT: "5000"

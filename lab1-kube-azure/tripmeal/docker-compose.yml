@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+    web:
+        build: 
+            context: web
+            platforms:
+                - "linux/amd64"
+                - "linux/arm64"
+        image: tripmeal-web
+        env_file: tripmeal.env
+        networks:
+            - app-network
+        ports:
+            - ${SERVER_PORT}:${SERVER_PORT}
+    db:
+        build: 
+            context: database
+            platforms:
+                - "linux/amd64"
+                - "linux/arm64"
+        image: tripmeal-database
+        env_file: tripmeal.env
+        expose:
+            - 3306
+        networks:
+            - app-network
+        volumes:
+            - db-volume:/var/lib/mysql
+
+volumes:
+    db-volume:
+
+networks:
+    app-network:
